@@ -1,0 +1,11 @@
+POST http://localhost/users/update/details
+Content-Type: application/json
+Cookie: session-id=s%3Ar56tLdsafHxZX-thY29t3ccYS0X8Vyp-.z%2F6NYig4gqEJOLmjCUQdnJTPOXePsLLzBFYdEvyfY4A; Path=/; Expires=Sat, 18 Sep 2021 06:38:13 GMT; HttpOnly; SameSite=Lax;
+
+{
+    "street":"Saraladevi hospital line",
+    "pincode":"522616",
+    "city":"guntur",
+    "state":"Andhra pradesh",
+    "phone_number":"+917093704454"
+}

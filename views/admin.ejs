@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<style>
+  body {
+    font-family: "Open Sans";
+    background-color: #efefef;
+  }
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 20%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+    padding: 2px 16px;
+    padding-top: 2px;
+    padding-right: 16px;
+    padding-bottom: 2px;
+    padding-left: 16px;
+}
+
+.modern-form {
+  width: 500px;
+  margin: 30px auto;
+  background-color:  #fff;
+  border: solid 1px #ccc;
+  padding: 20px 10px;
+}
+
+.modern-form h3 {
+  text-align: center;
+}
+
+.float-label-field {
+  border: none;
+  outline: none;
+  position: relative;
+  margin: 0 0 20px 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.float-label-field input {
+  border: none;
+  outline: none;
+  padding: 5px 5px 8px 0px;
+  width: 100%;
+  font-size: 18px;
+  border-bottom: solid 1px #efefef;
+}
+
+.float-label-field label {
+  opacity: 0.5;
+  position: absolute;
+  top: 10px;
+  left: 0px;
+  transition: all 0.2s ease;
+  font-size: 18px;
+}
+
+.float-label-field.focus label {
+  color: orange;
+}
+.float-label-field.focus input {
+  border-bottom: solid 1px orange;
+}
+.float-label-field.float label {
+  opacity: 1;
+  top: -8px;
+  font-size: 60%;
+  transition: all 0.2s ease;
+  font-weight: bold;
+}
+
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Book Store</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="/admin/getusers">USERS<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/upload/book">UPLOAD</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/admin">HOME</a>
+      </li>
+            <li class="nav-item">
+        <a class="nav-link" href="/admin/getbooks">BOOKS</a>
+      </li>
+    </ul>
+    <!-- <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> -->
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="/auth/logout">LOGOUT</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<% if (typeof book != "undefined") {%>
+<% for (var i = 0; i < book.length; i++) { %>
+<div class="card">
+  <img src="<%= book[i].book_image%>" alt="Avatar" style="width:100%">
+  <form method="post">
+  <div class="container">
+<fieldset class='float-label-field'>
+
+  <input type="text" value="<%=book[i].name%>" name="name" placeholder="name">
+</fieldset>
+    <fieldset class='float-label-field'> 
+      
+      <input type="text" value="<%=book[i].price%>" name="price" placeholder="price">
+    </fieldset>
+    <fieldset class='float-label-field'>
+
+      <input type="text" value="<%=book[i].instock%>" name="stock" placeholder="stock">
+    </fieldset>
+    <!-- <fieldset class='float-label-field'> -->
+      
+      <input type="hidden" value="<%=book[i].id %>" name="id" placeholder="id" >
+    <!-- </fieldset> -->
+    <fieldset class='float-label-field'>
+      
+      <input type="text" value="<%=book[i].author %>" name="author" placeholder="author">
+    </fieldset>
+    <fieldset class='float-label-field'>
+      
+      <input type="text" value="<%= book[i].description %>" name="description" placeholder="description">
+    </fieldset>
+
+<input type="submit" value="UPDATE" onclick="javascript: form.action='/admin/updatebook';"/>
+<input type="submit" value="DELETE" onclick="javascript: form.action='/admin/deletebook';"/>
+    
+  </div>
+</div>
+</form>
+<br>
+  <%}%><%}%>
+
+</body>
+</html> 
